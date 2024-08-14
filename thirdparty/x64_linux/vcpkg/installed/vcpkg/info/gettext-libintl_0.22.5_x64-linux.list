@@ -1,0 +1,6 @@
+x64-linux/
+x64-linux/share/
+x64-linux/share/gettext-libintl/
+x64-linux/share/gettext-libintl/usage
+x64-linux/share/gettext-libintl/vcpkg.spdx.json
+x64-linux/share/gettext-libintl/vcpkg_abi_info.txt

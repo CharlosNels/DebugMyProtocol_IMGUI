@@ -1,0 +1,16 @@
+# CMakeLists.txt
+cmake_minimum_required(VERSION 3.0)
+if(UNIX)
+    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/x64_linux/vcpkg/scripts/buildsystems/vcpkg.cmake)
+elseif(WIN32)
+    
+endif()
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
+project(DebugMyProtocol_IMGUI)
+include_directories(/usr/include)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SOURCES)
+find_package(imgui CONFIG REQUIRED)
+find_package(CSerialPort CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
+add_executable(${PROJECT_NAME} ${SOURCES})
+target_link_libraries(${PROJECT_NAME} PRIVATE imgui::imgui ${CSerialPort_LIBRARY} OpenGL SDL2 spdlog::spdlog)
