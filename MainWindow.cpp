@@ -60,20 +60,17 @@ MainWindow::MainWindow(bool *should_close)
 
     identifier_map = {
         {gettext("Modbus Master"), ModbusMaster},
-        {gettext("Modbus Slave"), ModbusSlave}
-    };
+        {gettext("Modbus Slave"), ModbusSlave}};
     modbus_map = {
         {"Modbus UDP", new Modbus_TCP()},
         {"Modbus TCP", new Modbus_TCP()},
         {"Modbus RTU", new Modbus_RTU()},
-        {"Modbus ASCII", new Modbus_ASCII()}
-    };
+        {"Modbus ASCII", new Modbus_ASCII()}};
     protocol_map = {
         {"Modbus UDP", MODBUS_UDP},
         {"Modbus TCP", MODBUS_TCP},
         {"MODBUS ASCII", MODBUS_ASCII},
-        {"MODBUS RTU", MODBUS_RTU}
-    };
+        {"MODBUS RTU", MODBUS_RTU}};
 }
 
 MainWindow::~MainWindow()
@@ -125,9 +122,9 @@ void MainWindow::render()
         render_udp_route();
     }
     ImGui::End();
-    for(auto iter = m_modbus_windows.begin(); iter != m_modbus_windows.end();)
+    for (auto iter = m_modbus_windows.begin(); iter != m_modbus_windows.end();)
     {
-        if((*iter)->visible())
+        if ((*iter)->visible())
         {
             (*iter)->render();
             ++iter;
@@ -217,8 +214,8 @@ void MainWindow::render_tcp_client_route()
     if (ImGui::Button(gettext("Connect"), ImVec2(ImGui::GetWindowContentRegionMax().x - 50, 35)))
     {
         m_connecting_client = new MyTcpSocket();
-        m_connecting_client->connectToHost(m_tcp_client_addr, m_tcp_client_remote_port);
         m_connecting_client->setConnectedCallback(std::bind(&MainWindow::tcp_connected_callback, this, std::placeholders::_1));
+        m_connecting_client->connectToHost(m_tcp_client_addr, m_tcp_client_remote_port);
     }
 }
 
@@ -240,17 +237,17 @@ void MainWindow::render_udp_route()
         MyUdpSocket *udp_socket = new MyUdpSocket();
         bool socket_create_successed = false;
         char window_name[128];
-        if(identifier_map[m_identifier_combo_box_data.text] == ModbusMaster)
+        if (identifier_map[m_identifier_combo_box_data.text] == ModbusMaster)
         {
             socket_create_successed = udp_socket->connectTo(m_udp_addr, m_udp_port);
             snprintf(window_name, sizeof(window_name), "UDP %s:%u", m_udp_addr, m_udp_port);
         }
-        else if(identifier_map[m_identifier_combo_box_data.text] == ModbusSlave)
+        else if (identifier_map[m_identifier_combo_box_data.text] == ModbusSlave)
         {
             socket_create_successed = udp_socket->bind(m_udp_port);
             snprintf(window_name, sizeof(window_name), "UDP localhost:%u", m_udp_port);
         }
-        if(socket_create_successed)
+        if (socket_create_successed)
         {
             udp_socket->setErrorCallback(std::bind(&MainWindow::error_callback, this, std::placeholders::_1));
             ModbusWindow *modbus_window = new ModbusWindow(udp_socket, window_name, identifier_map[m_identifier_combo_box_data.text], protocol_map[m_protocol_combo_box_data.text], modbus_map[m_protocol_combo_box_data.text]);
@@ -274,11 +271,11 @@ void MainWindow::tcp_new_connection_callback(MyTcpSocket *socket, MyTcpSocket *s
 
 void MainWindow::tcp_connected_callback(bool connected)
 {
-    if(connected)
+    if (connected)
     {
         char window_name[128];
         snprintf(window_name, sizeof(window_name), "%s:%u", m_connecting_client->peerAddress(), m_connecting_client->peerPort());
-        ModbusWindow *modbus_window = new ModbusWindow(m_connecting_client, "window_name", ModbusMaster, protocol_map[m_protocol_combo_box_data.text], modbus_map[m_protocol_combo_box_data.text]);
+        ModbusWindow *modbus_window = new ModbusWindow(m_connecting_client, window_name, ModbusMaster, protocol_map[m_protocol_combo_box_data.text], modbus_map[m_protocol_combo_box_data.text]);
         m_modbus_windows.push_back(modbus_window);
     }
 }

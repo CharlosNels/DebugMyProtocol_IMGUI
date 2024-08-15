@@ -1,5 +1,6 @@
 #include "mytcpsocket.h"
 #include <boost/make_shared.hpp>
+#include "utils.h"
 
 using namespace boost::asio;
 
@@ -107,7 +108,6 @@ void MyTcpSocket::setConnectedCallback(std::function<void(bool)> callback)
 
 void MyTcpSocket::asyncConnectCallback(const std::error_code &ec)
 {
-
     if(m_connected_callback)
     {
         m_connected_callback(ec.value() == 0);
@@ -158,7 +158,7 @@ void MyTcpSocket::setReadBufferSize(uint32_t buf_size)
 
     std::unique_lock<std::mutex> lock(m_socket_mutex);
     m_read_buffer_size = buf_size;
-    m_recv_buffer_size = buf_size;
+    m_recv_buffer_size = 0;
     delete []m_asio_read_buf;
     delete []m_recv_buffer;
     m_asio_read_buf = new char[buf_size];
@@ -227,7 +227,6 @@ void MyTcpSocket::disconnectFromHost()
 
 void MyTcpSocket::asyncReadCallback(const std::error_code &ec, size_t size)
 {
-
     if(!ec)
     {
         std::unique_lock<std::mutex> lock(m_socket_mutex);
