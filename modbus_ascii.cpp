@@ -45,7 +45,8 @@ size_t Modbus_ASCII::masterFrame2Pack(const ModbusFrameInfo &frame_info, char *b
             pack[index++] = uint8_t(frame_info.reg_values[i] & 0xFF);
         }
     }
-    pack[index++] = LRC(buffer, index);
+    pack[index] = LRC(buffer, index);
+    index++;
     buffer[0] = pack_start_character;
     size_t size = toHexString((const uint8_t *)pack, index, buffer + 1);
     size++;
@@ -152,7 +153,8 @@ size_t Modbus_ASCII::slaveFrame2Pack(const ModbusFrameInfo &frame_info, char *bu
     {
         pack[index++] = uint8_t(frame_info.reg_values[0] >> 8 & 0xFF);
     }
-    pack[index++] = LRC(buffer, index);
+    pack[index] = LRC(buffer, index);
+    index++;
     buffer[0] = pack_start_character;
     size_t size = toHexString((const uint8_t *)pack, index, buffer + 1);
     size++;

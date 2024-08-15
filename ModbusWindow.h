@@ -76,7 +76,7 @@ struct RegistersTableData
     CellFormat *cell_formats{nullptr};
     bool table_visible{true};
     RegistersTableData(uint16_t _id,uint16_t _reg_start, uint16_t _reg_end, uint8_t _function, uint32_t _scan_rate, ModbusIdentifier _identifier) :
-    id(_id), reg_start(_reg_start), reg_end(_reg_end), reg_quantity(_reg_end - _reg_start + 1), function(_function), scan_rate(_scan_rate), identifier(_identifier)
+    identifier(_identifier), id(_id), reg_start(_reg_start), reg_end(_reg_end), reg_quantity(_reg_end - _reg_start + 1), function(_function), scan_rate(_scan_rate)
     {
         update_info();
         reg_values = new uint16_t[reg_quantity];
@@ -133,23 +133,15 @@ struct RegistersTableData
 
     ~RegistersTableData()
     {
-        if (reg_values)
+        delete[] reg_values;
+        delete[] cell_formats;
+        for(int i = 0; i < reg_quantity; ++i)
         {
-            delete[] reg_values;
+            delete[] reg_alias[i];
         }
-        if (cell_formats)
-        {
-            delete[] cell_formats;
-        }
-        if(reg_alias)
-        {
-            for(int i = 0; i < reg_quantity; ++i)
-            {
-                delete[] reg_alias[i];
-            }
-            delete[] reg_alias;
-        }
-
+        delete[] reg_alias;
+        delete[] reg_alias_selected;
+        delete[] reg_values_selected;
     }
 };
 

@@ -47,7 +47,7 @@ MyTcpSocket::~MyTcpSocket()
         {
             m_asio_socket->shutdown(ip::tcp::socket::shutdown_type::shutdown_both);
         }
-        catch (boost::wrapexcept<boost::system::system_error> error)
+        catch (boost::wrapexcept<boost::system::system_error> &error)
         {
             delete[] m_asio_read_buf;
             delete[] m_recv_buffer;
@@ -74,7 +74,7 @@ void MyTcpSocket::close()
         {
             m_asio_socket->shutdown(ip::tcp::socket::shutdown_type::shutdown_both);
         }
-        catch (boost::wrapexcept<boost::system::system_error> error)
+        catch (boost::wrapexcept<boost::system::system_error> &error)
         {
             if(m_error_callback)
             {
@@ -138,7 +138,7 @@ bool MyTcpSocket::bind(uint16_t port)
         m_asio_acceptor->set_option(ip::tcp::acceptor::reuse_address(true));
         m_asio_acceptor->bind(ip::tcp::endpoint(ip::tcp::v4(),port));
     }
-    catch(boost::wrapexcept<boost::system::system_error> error)
+    catch(boost::wrapexcept<boost::system::system_error> &error)
     {
         if(m_error_callback)
         {
@@ -201,7 +201,7 @@ bool MyTcpSocket::connectToHost(const char *hostName, uint16_t port)
         ip::tcp::endpoint host(ip::address::from_string(hostName),port);
         m_asio_socket->async_connect(host,std::bind(&MyTcpSocket::asyncConnectCallback,this,std::placeholders::_1));
     }
-    catch(boost::wrapexcept<boost::system::system_error> error)
+    catch(boost::wrapexcept<boost::system::system_error> &error)
     {
         if(m_error_callback)
         {

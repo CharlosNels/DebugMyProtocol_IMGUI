@@ -10,7 +10,6 @@
 #include <imgui.h>
 #include <libintl.h>
 #include <fstream>
-#include <mutex>
 
 ModbusWindow::ModbusWindow(MyIODevice *myIODevice, const char *window_name, ModbusIdentifier identifier, Protocols protocol, ModbusBase *modbus_base)
     : m_myIODevice(myIODevice), m_visible(true), m_identifier(identifier), m_protocol(protocol), m_add_registers_dialog_visible(false),
@@ -2097,7 +2096,7 @@ void ModbusWindow::process_slave_frame(const ModbusFrameInfo &frame_info, Regist
     {
         memcpy(slave_reg_table_data->reg_values + (frame_info.reg_addr - slave_reg_table_data->reg_start), frame_info.reg_values, frame_info.quantity * sizeof(frame_info.reg_values[0]));
     }
-    else 
+    else
     {
         reply_frame.function = frame_info.function + ModbusFunctionError;
         reply_frame.reg_values[0] = error_code;

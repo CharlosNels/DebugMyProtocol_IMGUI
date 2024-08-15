@@ -1,4 +1,5 @@
 .vscode
+.cache
 CMakeFiles
 build
 cmake_install.cmake

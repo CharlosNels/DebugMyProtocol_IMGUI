@@ -75,6 +75,14 @@ MainWindow::MainWindow(bool *should_close)
 
 MainWindow::~MainWindow()
 {
+    for(auto iter = m_modbus_windows.begin(); iter != m_modbus_windows.end(); ++iter)
+    {
+        delete *iter;
+    }
+    for(auto iter = modbus_map.begin(); iter != modbus_map.end(); ++iter)
+    {
+        delete iter->second;
+    }
 }
 
 void MainWindow::render()

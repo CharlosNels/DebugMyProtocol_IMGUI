@@ -2,7 +2,6 @@
 #include "mytcpsocket.h"
 #include <boost/make_shared.hpp>
 #include <functional>
-#include "utils.h"
 
 using namespace boost::asio;
 
@@ -41,7 +40,7 @@ bool MyUdpSocket::connectTo(const char *host, uint16_t port)
         m_asio_socket->connect(m_remote_ep);
         m_asio_socket->async_receive_from(buffer(m_asio_read_buf,m_read_buffer_size), m_remote_ep, std::bind(&MyUdpSocket::asyncReceiveCallback,this,std::placeholders::_1,std::placeholders::_2));
     }
-    catch(boost::wrapexcept<boost::system::system_error> error)
+    catch(boost::wrapexcept<boost::system::system_error> &error)
     {
         if(m_error_callback)
         {
@@ -60,7 +59,7 @@ bool MyUdpSocket::bind(uint16_t port)
         m_asio_socket->bind(m_local_ep);
         m_asio_socket->async_receive_from(buffer(m_asio_read_buf, m_read_buffer_size), m_remote_ep,std::bind(&MyUdpSocket::asyncReceiveCallback, this, std::placeholders::_1, std::placeholders::_2));
     }
-    catch(boost::wrapexcept<boost::system::system_error> error)
+    catch(boost::wrapexcept<boost::system::system_error> &error)
     {
         if(m_error_callback)
         {
@@ -82,7 +81,7 @@ void MyUdpSocket::close()
         {
             m_asio_socket->shutdown(ip::tcp::socket::shutdown_type::shutdown_both);
         }
-        catch (boost::wrapexcept<boost::system::system_error> error)
+        catch (boost::wrapexcept<boost::system::system_error> &error)
         {
             if(m_error_callback)
             {
@@ -115,7 +114,7 @@ void MyUdpSocket::asyncReceiveCallback(const std::error_code &ec, size_t size)
         }
     }
     else
-    {   
+    {
         std::unique_lock<std::mutex> lock(m_socket_mutex);
         if(m_recv_buffer_size + size > m_read_buffer_size)
         {
