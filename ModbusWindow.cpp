@@ -1063,7 +1063,7 @@ void ModbusWindow::render_communication_traffic_dialog()
         ImGui::SameLine();
         ImGui::Checkbox(gettext("Timestamp"), &m_communication_traffic_window_data.timestamp);
         ImGui::Separator();
-        ImGui::InputTextMultiline("##communication_traffic_text", m_communication_traffic_window_data.communication_traffic_text.data(), m_communication_traffic_window_data.communication_traffic_text.size(), ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowHeight() - 50 - ImGui::GetWindowContentRegionMin().y), ImGuiInputTextFlags_ReadOnly);
+        ImGui::InputTextMultiline("##communication_traffic_text", const_cast<char*>(m_communication_traffic_window_data.communication_traffic_text.data()), m_communication_traffic_window_data.communication_traffic_text.size(), ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowHeight() - 50 - ImGui::GetWindowContentRegionMin().y), ImGuiInputTextFlags_ReadOnly);
     }
     ImGui::End();
     if (!m_communication_traffic_dialog_visible)

@@ -158,7 +158,7 @@ void MainWindow::render_serial_port_route()
     m_route_type = RouteType_SerialPort;
     using namespace itas109;
     std::vector<SerialPortInfo> serial_port_info_list = CSerialPortInfo::availablePortInfos();
-    const char *serial_port_name_list[serial_port_info_list.size()];
+    const char **serial_port_name_list = new const char *[serial_port_info_list.size()];
     for (int i = 0; i < serial_port_info_list.size(); ++i)
     {
         serial_port_name_list[i] = serial_port_info_list[i].portName;
@@ -182,6 +182,7 @@ void MainWindow::render_serial_port_route()
         ModbusWindow *modbus_window = new ModbusWindow(serial_port, m_serial_port_name_combo_box_data.text, identifier_map[m_identifier_combo_box_data.text], protocol_map[m_protocol_combo_box_data.text], modbus_map[m_protocol_combo_box_data.text]);
         m_modbus_windows.push_back(modbus_window);
     }
+    delete[] serial_port_name_list;
 }
 
 void MainWindow::render_tcp_server_route()
