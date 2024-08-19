@@ -1,0 +1,543 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-19 20:34+0800\n"
+"PO-Revision-Date: 2024-08-19 21:17+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: MainWindow.cpp:52 MainWindow.cpp:57
+msgid "None"
+msgstr "无校验"
+
+#: MainWindow.cpp:53
+msgid "Odd"
+msgstr "奇校验"
+
+#: MainWindow.cpp:54
+msgid "Even"
+msgstr "偶检验"
+
+#: MainWindow.cpp:58
+msgid "Hardware"
+msgstr "硬件流控"
+
+#: MainWindow.cpp:59
+msgid "Software"
+msgstr "软件流控"
+
+#: MainWindow.cpp:62
+msgid "Modbus Master"
+msgstr "Modbus 主机"
+
+#: MainWindow.cpp:63
+msgid "Modbus Slave"
+msgstr "Modbus 从机"
+
+#: MainWindow.cpp:125
+msgid "Protocol"
+msgstr "协议"
+
+#: MainWindow.cpp:126
+msgid "Identify"
+msgstr "身份"
+
+#: MainWindow.cpp:166
+msgid "Port Name"
+msgstr "端口名称"
+
+#: MainWindow.cpp:167
+msgid "Baud Rate"
+msgstr "波特率"
+
+#: MainWindow.cpp:168
+msgid "Data Bits"
+msgstr "数据位"
+
+#: MainWindow.cpp:169
+msgid "Stop Bits"
+msgstr "停止位"
+
+#: MainWindow.cpp:170
+msgid "Parity"
+msgstr "校验位"
+
+#: MainWindow.cpp:171
+msgid "Flow Control"
+msgstr "流控"
+
+#: MainWindow.cpp:172
+msgid "Open"
+msgstr "打开"
+
+#: MainWindow.cpp:199 MainWindow.cpp:222 MainWindow.cpp:243
+msgid "Port"
+msgstr "端口"
+
+#: MainWindow.cpp:200
+msgid "Listen"
+msgstr "监听"
+
+#: MainWindow.cpp:221 MainWindow.cpp:242 ModbusWindow.cpp:213
+#: ModbusWindow.cpp:918 ModbusWindow.cpp:994 ModbusWindow.cpp:1111
+#: ModbusWindow.cpp:1162 ModbusWindow.cpp:1211 ModbusWindow.cpp:1269
+msgid "Address"
+msgstr "地址"
+
+#: MainWindow.cpp:223 MainWindow.cpp:244
+msgid "Connect"
+msgstr "连接"
+
+#: ModbusWindow.cpp:26 ModbusWindow.cpp:35
+msgid "01 Read Coils (0x)"
+msgstr "01 读线圈 (0x)"
+
+#: ModbusWindow.cpp:27 ModbusWindow.cpp:36
+msgid "02 Read Descrete Inputs (1x)"
+msgstr "02 读离散输入 (1x)"
+
+#: ModbusWindow.cpp:28 ModbusWindow.cpp:37
+msgid "03 Read Holding Registers (4x)"
+msgstr "03 读保持寄存器 (4x)"
+
+#: ModbusWindow.cpp:29 ModbusWindow.cpp:38
+msgid "04 Read Input Registers (3x)"
+msgstr "04 读输入寄存器 (3x)"
+
+#: ModbusWindow.cpp:30
+msgid "05 Write Single Coil"
+msgstr "05 写单个线圈"
+
+#: ModbusWindow.cpp:31
+msgid "06 Write Single Register"
+msgstr "06 写单个寄存器"
+
+#: ModbusWindow.cpp:32
+msgid "15 Write Multiple Coils"
+msgstr "15 写多个线圈"
+
+#: ModbusWindow.cpp:33
+msgid "16 Write Multiple Registers"
+msgstr "16 写多个寄存器"
+
+#: ModbusWindow.cpp:40
+msgid "Timeout Error"
+msgstr "超时错误"
+
+#: ModbusWindow.cpp:41
+msgid "Illegal Function"
+msgstr "非法功能"
+
+#: ModbusWindow.cpp:42
+msgid "Illegal Data Address"
+msgstr "非法数据地址"
+
+#: ModbusWindow.cpp:43
+msgid "Illegal Data Value"
+msgstr "非法数据值"
+
+#: ModbusWindow.cpp:44
+msgid "Slave Device Failure"
+msgstr "从站设备故障"
+
+#: ModbusWindow.cpp:45
+msgid "Acknowledge"
+msgstr "确认"
+
+#: ModbusWindow.cpp:46
+msgid "Slave Device Busy"
+msgstr "从站设备忙"
+
+#: ModbusWindow.cpp:47
+msgid "Negative Acknowledgment"
+msgstr "否定确认"
+
+#: ModbusWindow.cpp:48
+msgid "Memory Parity Error"
+msgstr "存储器奇偶校验错误"
+
+#: ModbusWindow.cpp:49
+msgid "Gateway Path Unavailable"
+msgstr "网关路径不可用"
+
+#: ModbusWindow.cpp:50
+msgid "Gateway Target Device Failed To Respond"
+msgstr "网关目标设备未响应"
+
+#: ModbusWindow.cpp:52
+msgid "The slave did not reply within the specified time."
+msgstr "从机没有在指定的时间内回应."
+
+#: ModbusWindow.cpp:53
+msgid ""
+"The function code received in the request is not an authorized action for "
+"the slave. The slave may be in the wrong state to process a specific request."
+msgstr ""
+"请求中收到的功能码不是从属服务器的授权操作.从服务器可能处于错误的状态,无法处"
+"理特定的请求."
+
+#: ModbusWindow.cpp:54
+msgid ""
+"The data address received by the slave is not an authorized address for the "
+"slave."
+msgstr "从服务器接收到的数据地址不是从服务器的授权地址."
+
+#: ModbusWindow.cpp:55
+msgid ""
+"The value in the request data field is not an authorized value for the slave."
+msgstr "请求数据字段中的值不是从服务器的授权值."
+
+#: ModbusWindow.cpp:56
+msgid ""
+"The slave fails to perform a requested action because of an unrecoverable "
+"error."
+msgstr "由于出现不可恢复的错误,从站无法执行请求的操作."
+
+#: ModbusWindow.cpp:57
+msgid "The slave accepts the request but needs a long time to process it."
+msgstr "从站接受请求,但需要很长时间来处理它."
+
+#: ModbusWindow.cpp:58
+msgid ""
+"The slave is busy processing another command. The master must send the "
+"request once the slave is available."
+msgstr "从站正在忙着处理另一个命令.一旦从站可用,主机必须发送请求."
+
+#: ModbusWindow.cpp:59
+msgid "The slave cannot perform the programming request sent by the master."
+msgstr "从机不能执行主机发送的编程请求."
+
+#: ModbusWindow.cpp:60
+msgid ""
+"The slave detects a parity error in the memory when attempting to read "
+"extended memory."
+msgstr "当试图读取扩展内存时,从站在内存中检测到奇偶校验错误."
+
+#: ModbusWindow.cpp:61
+msgid "The gateway is overloaded or not correctly configured."
+msgstr "网关过载或配置错误."
+
+#: ModbusWindow.cpp:62
+msgid "The slave is not present on the network."
+msgstr "从机不在网络上."
+
+#: ModbusWindow.cpp:64 ModbusWindow.cpp:251
+msgid "Signed"
+msgstr "有符号整数"
+
+#: ModbusWindow.cpp:65 ModbusWindow.cpp:255
+msgid "Unsigned"
+msgstr "无符号整数"
+
+#: ModbusWindow.cpp:66
+msgid "Long ABCD"
+msgstr "长整数(ABCD)"
+
+#: ModbusWindow.cpp:67
+msgid "Long CDAB"
+msgstr "长整数(CDAB)"
+
+#: ModbusWindow.cpp:68
+msgid "Long BADC"
+msgstr "长整数(BADC)"
+
+#: ModbusWindow.cpp:69
+msgid "Long DCBA"
+msgstr "长整数(DCBA)"
+
+#: ModbusWindow.cpp:70
+msgid "Float ABCD"
+msgstr "浮点型(ABCD)"
+
+#: ModbusWindow.cpp:71
+msgid "Float CDAB"
+msgstr "浮点型(CDAB)"
+
+#: ModbusWindow.cpp:72
+msgid "Float BADC"
+msgstr "浮点型(BADC)"
+
+#: ModbusWindow.cpp:73
+msgid "Float DCBA"
+msgstr "浮点型(DCBA)"
+
+#: ModbusWindow.cpp:74
+msgid "Double ABCDEFGH"
+msgstr "双精度(ABCDEFGH)"
+
+#: ModbusWindow.cpp:75
+msgid "Double GHEFCDAB"
+msgstr "双精度(GHEFCDAB)"
+
+#: ModbusWindow.cpp:76
+msgid "Double BADCFEHG"
+msgstr "双精度(BADCFEHG)"
+
+#: ModbusWindow.cpp:77
+msgid "Double HGFEDCBA"
+msgstr "双精度(HGFEDCBA)"
+
+#: ModbusWindow.cpp:165 ModbusWindow.cpp:192
+msgid "Tools"
+msgstr "工具"
+
+#: ModbusWindow.cpp:167 ModbusWindow.cpp:194
+msgid "Add registers"
+msgstr "添加寄存器定义"
+
+#: ModbusWindow.cpp:168 ModbusWindow.cpp:195
+msgid "Modify registers"
+msgstr "修改寄存器定义"
+
+#: ModbusWindow.cpp:169 ModbusWindow.cpp:196
+msgid "Communication traffic"
+msgstr "通讯流量"
+
+#: ModbusWindow.cpp:170
+msgid "Error counter"
+msgstr "错误计数器"
+
+#: ModbusWindow.cpp:174
+msgid "Settings"
+msgstr "设置"
+
+#: ModbusWindow.cpp:176 ModbusWindow.cpp:1092
+msgid "Timeout Setting"
+msgstr "超时设置"
+
+#: ModbusWindow.cpp:180
+msgid "Functions"
+msgstr "功能码"
+
+#: ModbusWindow.cpp:182
+msgid "05 : Write Single Coil"
+msgstr "05 : 写单个线圈"
+
+#: ModbusWindow.cpp:183
+msgid "06 : Write Single Register"
+msgstr "06 : 写单个寄存器"
+
+#: ModbusWindow.cpp:184
+msgid "15 : Write Multiple Coils"
+msgstr "15 : 写多个线圈"
+
+#: ModbusWindow.cpp:185
+msgid "16 : Write Multiple Registers"
+msgstr "16 : 写多个寄存器"
+
+#: ModbusWindow.cpp:214
+msgid "Alias"
+msgstr "别名"
+
+#: ModbusWindow.cpp:215 ModbusWindow.cpp:1164
+msgid "Value"
+msgstr "值"
+
+#: ModbusWindow.cpp:244 ModbusWindow.cpp:1271
+msgid "Format"
+msgstr "格式"
+
+#: ModbusWindow.cpp:259
+msgid "Hex"
+msgstr "十六进制"
+
+#: ModbusWindow.cpp:263
+msgid "ASCII - Hex"
+msgstr "ASCII码(十六进制)"
+
+#: ModbusWindow.cpp:267
+msgid "Binary"
+msgstr "二进制"
+
+#: ModbusWindow.cpp:272
+msgid "32-bit Signed"
+msgstr "32位有符号整数"
+
+#: ModbusWindow.cpp:274 ModbusWindow.cpp:294 ModbusWindow.cpp:322
+#: ModbusWindow.cpp:342 ModbusWindow.cpp:373 ModbusWindow.cpp:401
+msgid "Big Endian"
+msgstr "大端"
+
+#: ModbusWindow.cpp:278 ModbusWindow.cpp:298 ModbusWindow.cpp:326
+#: ModbusWindow.cpp:346 ModbusWindow.cpp:377 ModbusWindow.cpp:405
+msgid "Little Endian"
+msgstr "小端"
+
+#: ModbusWindow.cpp:282 ModbusWindow.cpp:302 ModbusWindow.cpp:330
+#: ModbusWindow.cpp:350 ModbusWindow.cpp:381 ModbusWindow.cpp:409
+msgid "Big Endian Byte Swap"
+msgstr "大端(交换字节序)"
+
+#: ModbusWindow.cpp:286 ModbusWindow.cpp:306 ModbusWindow.cpp:334
+#: ModbusWindow.cpp:354 ModbusWindow.cpp:385 ModbusWindow.cpp:413
+msgid "Little Endian Byte Swap"
+msgstr "小端(交换字节序)"
+
+#: ModbusWindow.cpp:292
+msgid "32-bit Unsigned"
+msgstr "32位无符号整数"
+
+#: ModbusWindow.cpp:320
+msgid "64-bit Signed"
+msgstr "64位有符号整数"
+
+#: ModbusWindow.cpp:340
+msgid "64-bit Unsigned"
+msgstr "64位无符号整数"
+
+#: ModbusWindow.cpp:371
+msgid "32-bit Float"
+msgstr "32位浮点型"
+
+#: ModbusWindow.cpp:399
+msgid "64-bit Float"
+msgstr "64位浮点型"
+
+#: ModbusWindow.cpp:911
+msgid "Add Registers"
+msgstr "添加寄存器定义"
+
+#: ModbusWindow.cpp:916 ModbusWindow.cpp:993
+msgid "Function"
+msgstr "功能码"
+
+#: ModbusWindow.cpp:919 ModbusWindow.cpp:995 ModbusWindow.cpp:1212
+#: ModbusWindow.cpp:1270
+msgid "Quantity"
+msgstr "数量"
+
+#: ModbusWindow.cpp:922 ModbusWindow.cpp:998
+msgid "Scan Rate"
+msgstr "扫描频率"
+
+#: ModbusWindow.cpp:936 ModbusWindow.cpp:1012 ModbusWindow.cpp:1094
+msgid "OK"
+msgstr "确认"
+
+#: ModbusWindow.cpp:949 ModbusWindow.cpp:1148 ModbusWindow.cpp:1196
+#: ModbusWindow.cpp:1252 ModbusWindow.cpp:1440
+msgid "Cancel"
+msgstr "返回"
+
+#: ModbusWindow.cpp:964
+msgid "Modify Registers"
+msgstr "修改寄存器定义"
+
+#: ModbusWindow.cpp:970
+msgid "Registers Tables"
+msgstr "寄存器表格"
+
+#: ModbusWindow.cpp:992
+msgid "ID"
+msgstr "ID"
+
+#: ModbusWindow.cpp:1037
+msgid "Communication Traffic"
+msgstr "通讯流量"
+
+#: ModbusWindow.cpp:1039
+msgid "Start"
+msgstr "开始"
+
+#: ModbusWindow.cpp:1039
+msgid "Stop"
+msgstr "停止"
+
+#: ModbusWindow.cpp:1044
+msgid "Clear"
+msgstr "清除"
+
+#: ModbusWindow.cpp:1049
+msgid "Save"
+msgstr "保存"
+
+#: ModbusWindow.cpp:1057
+msgid "Copy"
+msgstr "复制"
+
+#: ModbusWindow.cpp:1062
+msgid "Stop On Error"
+msgstr "有错误时停止"
+
+#: ModbusWindow.cpp:1064
+msgid "Timestamp"
+msgstr "时间戳"
+
+#: ModbusWindow.cpp:1078
+msgid "Error Counter"
+msgstr "错误计数器"
+
+#: ModbusWindow.cpp:1094
+msgid "Timeout(ms)"
+msgstr "超时(毫秒)"
+
+#: ModbusWindow.cpp:1108
+msgid "05:Write Single Coil"
+msgstr "05:写单个线圈"
+
+#: ModbusWindow.cpp:1110 ModbusWindow.cpp:1161 ModbusWindow.cpp:1210
+#: ModbusWindow.cpp:1268
+msgid "Slave ID"
+msgstr "从站ID"
+
+#: ModbusWindow.cpp:1114
+msgid "On"
+msgstr "开"
+
+#: ModbusWindow.cpp:1116
+msgid "Off"
+msgstr "关"
+
+#: ModbusWindow.cpp:1119 ModbusWindow.cpp:1167
+msgid "Close On Response OK"
+msgstr "回应正确时关闭"
+
+#: ModbusWindow.cpp:1122
+msgid "Use 05 Function"
+msgstr "使用05功能码"
+
+#: ModbusWindow.cpp:1124
+msgid "Use 15 Function"
+msgstr "使用15功能码"
+
+#: ModbusWindow.cpp:1140 ModbusWindow.cpp:1188 ModbusWindow.cpp:1234
+#: ModbusWindow.cpp:1434
+msgid "Send"
+msgstr "发送"
+
+#: ModbusWindow.cpp:1159
+msgid "06:Write Single Register"
+msgstr "06:写单个寄存器"
+
+#: ModbusWindow.cpp:1171
+msgid "Use 06 Function"
+msgstr "使用06功能码"
+
+#: ModbusWindow.cpp:1173
+msgid "Use 16 Function"
+msgstr "使用16功能码"
+
+#: ModbusWindow.cpp:1206
+msgid "15:Write Multiple Coils"
+msgstr "15:写多个线圈"
+
+#: ModbusWindow.cpp:1227
+msgid "Reverse"
+msgstr "翻转"
+
+#: ModbusWindow.cpp:1264
+msgid "16:Write Multiple Registers"
+msgstr "16:写多个寄存器"
