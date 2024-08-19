@@ -1,7 +1,7 @@
 add_rules("mode.debug", "mode.release")
 set_policy("package.requires_lock", true)
 
-add_requires("imgui 1.90", {configs = {sdl2=true, opengl2=true, freetype=true}})
+add_requires("imgui 1.89", {configs = {sdl2=true, opengl2=true, freetype=true}})
 add_requires("gettext")
 add_requires("cserialport")
 add_requires("sdl2")
