@@ -132,7 +132,7 @@ size_t toHexString(const uint8_t *data, int len, char *buffer, char sep)
 
 size_t fromHexString(const char *buffer, int len, uint8_t *data)
 {
-    size_t size;
+    size_t size = 0;
     for(int i = 0; i < len; i += 2)
     {
         data[size++] = uint8_t(hex_map.at(buffer[i]) << 4 | hex_map.at(buffer[i + 1]));
