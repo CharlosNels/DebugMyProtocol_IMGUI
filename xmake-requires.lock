@@ -43,7 +43,7 @@
             },
             version = "3.22.1"
         },
-        ["cserialport#67114504"] = {
+        ["cserialport#31fecfc4"] = {
             repo = {
                 branch = "master",
                 commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
@@ -116,6 +116,14 @@
             version = "0.4"
         },
         ["libsdl >=2.0.17#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
+                url = "https://gitee.com/tboox/xmake-repo.git"
+            },
+            version = "2.0.20"
+        },
+        ["libsdl#31fecfc4"] = {
             repo = {
                 branch = "master",
                 commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
@@ -220,14 +228,6 @@
             version = "0.29.2"
         },
         ["python 3.x#31fecfc4"] = {
-            repo = {
-                branch = "master",
-                commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
-                url = "https://gitee.com/tboox/xmake-repo.git"
-            },
-            version = "3.10.12"
-        },
-        ["python#31fecfc4"] = {
             repo = {
                 branch = "master",
                 commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
