@@ -11,6 +11,22 @@
             },
             version = "3.8.2"
         },
+        ["boost#8ad9b30b"] = {
+            repo = {
+                branch = "master",
+                commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
+                url = "https://gitee.com/tboox/xmake-repo.git"
+            },
+            version = "1.86.0"
+        },
+        ["bzip2#31fecfc4"] = {
+            repo = {
+                branch = "master",
+                commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
+                url = "https://gitee.com/tboox/xmake-repo.git"
+            },
+            version = "1.0.8"
+        },
         ["ca-certificates#31fecfc4"] = {
             repo = {
                 branch = "master",
@@ -27,7 +43,7 @@
             },
             version = "3.22.1"
         },
-        ["cserialport#31fecfc4"] = {
+        ["cserialport#67114504"] = {
             repo = {
                 branch = "master",
                 commit = "485366806fc87b5f9c2b235e06f4d801f8937534",
@@ -218,9 +234,6 @@
                 url = "https://gitee.com/tboox/xmake-repo.git"
             },
             version = "3.10.12"
-        },
-        ["sdl2#31fecfc4"] = {
-            version = "2.0.20"
         },
         ["spdlog#31fecfc4"] = {
             repo = {
