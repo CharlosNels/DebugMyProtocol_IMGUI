@@ -48,11 +48,11 @@ T myFromLittleEndianByteSwap(const void *src)
     const size_t size = sizeof(T);
     char const *src_ = (const char *)src;
     T ret{};
-    char *dst = (char *)&ret;
+    char *dest = (char *)&ret;
     for(int i = 0;i < size; i += 2)
     {
-        dst[i] = src_[i + 1];
-        dst[i + 1] = src_[i];
+        dest[i] = src_[i + 1];
+        dest[i + 1] = src_[i];
     }
     return ret;
 }
@@ -74,11 +74,11 @@ template<class T>
 T myFromBigEndianByteSwap(const void *src)
 {
     T ret{};
-    char *dst = (char *)&ret;
+    char *dest = (char *)&ret;
     char const *src_ = (const char *)src;
     for(int i = 0;i < sizeof(T); ++i)
     {
-        dst[i] = src_[sizeof(T) - i - 1];
+        dest[i] = src_[sizeof(T) - i - 1];
     }
     return ret;
 }
@@ -98,8 +98,8 @@ template<class T>
 T myFromLittleEndian(const void *src)
 {
     T ret{};
-    char *dst = (char *)&ret;
-    memcpy(dst, src, sizeof(T));
+    char *dest = (char *)&ret;
+    memcpy(dest, src, sizeof(T));
     return ret;
 }
 
@@ -115,11 +115,11 @@ T myFromBigEndian(const void *src)
     char const *src_ = (const char *)src;
     const size_t size = sizeof(T);
     T ret{};
-    char *dst = (char *)&ret;
+    char *dest = (char *)&ret;
     for(int i = 0;i < size; i += 2)
     {
-        dst[i] = src_[size - i - 2];
-        dst[i + 1] = src_[size - i - 1];
+        dest[i] = src_[size - i - 2];
+        dest[i + 1] = src_[size - i - 1];
     }
     return ret;
 }
