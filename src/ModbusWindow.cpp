@@ -411,6 +411,7 @@ void ModbusWindow::render_registers_tables() {
                                 std::distance(write_formats.begin(),
                                               std::find(write_formats.begin(), write_formats.end(),
                                                         getKeyOfValueInMap(m_write_format_map, x->cell_formats[i])));
+                            strcpy(m_input_plot_reg_data.title, x->reg_alias[i]);
                             m_input_plot_reg_data.reg_addr = x->reg_start + i;
                             m_inplut_plot_reg_data_dialog_visible = true;
                         }
@@ -1312,13 +1313,18 @@ void ModbusWindow::render_register_plots() {
         return;
     }
     if (ImGui::Begin(gettext("Plots"))) {
+        ImGui::Checkbox(gettext("Local Time"), &ImPlot::GetStyle().UseLocalTime);
+        ImGui::SameLine();
+        ImGui::Checkbox(gettext("ISO 8601"), &ImPlot::GetStyle().UseISO8601);
+        ImGui::SameLine();
+        ImGui::Checkbox(gettext("24 Hour Clock"), &ImPlot::GetStyle().Use24HourClock);
         for (auto iter = m_plot_register_datas.begin(); iter != m_plot_register_datas.end();) {
             if (ImGui::CollapsingHeader(iter->title, &iter->visible) && iter->x_data.size() != 0) {
                 if (ImPlot::BeginPlot(iter->title)) {
                     ImPlot::SetupAxes("Time", "Value");
                     ImPlot::SetupAxisScale(ImAxis_X1, ImPlotScale_Time);
-                    ImPlot::SetupAxesLimits(iter->x_data[0], iter->x_data.back() + iter->x_data.size() * 0.33,
-                                            iter->min_value, iter->max_value);
+                    ImPlot::SetupAxesLimits(iter->x_data[0], iter->x_data.back() + 60, iter->min_value,
+                                            iter->max_value);
                     ImPlot::PlotLine(iter->title, iter->x_data.data(), iter->y_data.data(), iter->x_data.size());
                     ImPlot::EndPlot();
                 }

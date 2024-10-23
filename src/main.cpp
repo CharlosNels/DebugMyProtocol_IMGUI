@@ -97,6 +97,10 @@ int main(int, char **) {
     ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
     ImGui_ImplOpenGL2_Init();
 
+    ImPlot::GetStyle().UseLocalTime = true;
+    ImPlot::GetStyle().UseISO8601 = true;
+    ImPlot::GetStyle().Use24HourClock = true;
+
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use
     // ImGui::PushFont()/PopFont() to select them.
