@@ -1,25 +1,23 @@
 #ifndef __MODBUSWINDOW_H__
 #define __MODBUSWINDOW_H__
 
+#include "ModbusBase.h"
 #include "ModbusFrameInfo.h"
 #include "MyIODevice.h"
-#include "ModbusBase.h"
+#include "utils.h"
+#include <SDL.h>
 #include <cstdio>
 #include <cstring>
-#include <stdint.h>
-#include <vector>
-#include <string>
 #include <list>
-#include <SDL.h>
-#include <unordered_map>
-#include <string>
+#include <stdint.h>
 #include <stdlib.h>
-#include "utils.h"
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 #define REGISTER_ALIAS_MAX_LEN 64
 
-enum CellFormat
-{
+enum CellFormat {
     Format_None = 0,
     Format_Coil,
     Format_Signed,
@@ -53,8 +51,7 @@ enum CellFormat
     Format_64_Bit_Float_Little_Endian_Byte_Swap,
 };
 
-struct RegistersTableData
-{
+struct RegistersTableData {
     ModbusIdentifier identifier;
     char table_title[128]{0};
     char info[128]{0};
@@ -75,19 +72,22 @@ struct RegistersTableData
     uint16_t packet_size{0};
     CellFormat *cell_formats{nullptr};
     bool table_visible{true};
-    RegistersTableData(uint16_t _id,uint16_t _reg_start, uint16_t _reg_end, uint8_t _function, uint32_t _scan_rate, ModbusIdentifier _identifier) :
-    identifier(_identifier), id(_id), reg_start(_reg_start), reg_end(_reg_end), reg_quantity(_reg_end - _reg_start + 1), function(_function), scan_rate(_scan_rate)
-    {
+    RegistersTableData(uint16_t _id, uint16_t _reg_start, uint16_t _reg_end, uint8_t _function, uint32_t _scan_rate,
+                       ModbusIdentifier _identifier)
+        : identifier(_identifier), id(_id), reg_start(_reg_start), reg_end(_reg_end),
+          reg_quantity(_reg_end - _reg_start + 1), function(_function), scan_rate(_scan_rate) {
         update_info();
         reg_values = new uint16_t[reg_quantity];
         memset(reg_values, 0, reg_quantity * sizeof(uint16_t));
         reg_values_selected = new bool[reg_quantity];
         cell_formats = new CellFormat[reg_quantity];
-        reg_alias = new char*[reg_quantity];
+        reg_alias = new char *[reg_quantity];
         reg_alias_selected = new bool[reg_quantity];
-        CellFormat default_fmt = (function == ModbusReadCoils || function == ModbusWriteSingleCoil || function == ModbusReadDescreteInputs || function == ModbusWriteMultipleCoils) ? Format_Coil : Format_Unsigned;
-        for(int i = 0;i < reg_quantity; ++i)
-        {
+        CellFormat default_fmt = (function == ModbusReadCoils || function == ModbusWriteSingleCoil ||
+                                  function == ModbusReadDescreteInputs || function == ModbusWriteMultipleCoils)
+                                     ? Format_Coil
+                                     : Format_Unsigned;
+        for (int i = 0; i < reg_quantity; ++i) {
             reg_values_selected[i] = false;
             cell_formats[i] = default_fmt;
             reg_alias[i] = new char[REGISTER_ALIAS_MAX_LEN];
@@ -96,20 +96,16 @@ struct RegistersTableData
         }
     }
 
-    void update_info()
-    {
-        if(identifier == ModbusMaster)
-        {
-            snprintf(info, sizeof(info), "Tx=%u;Err=%u;ID=%u;F=%02u;SR=%ums", send_count, error_count, id, function, scan_rate);
-        }
-        else
-        {
+    void update_info() {
+        if (identifier == ModbusMaster) {
+            snprintf(info, sizeof(info), "Tx=%u;Err=%u;ID=%u;F=%02u;SR=%ums", send_count, error_count, id, function,
+                     scan_rate);
+        } else {
             snprintf(info, sizeof(info), "ID=%u;F=%02u", id, function);
         }
     }
 
-    void modify_registers()
-    {
+    void modify_registers() {
         delete[] reg_values;
         delete[] reg_values_selected;
         delete[] cell_formats;
@@ -119,10 +115,9 @@ struct RegistersTableData
         memset(reg_values, 0, reg_quantity * sizeof(reg_values[0]));
         reg_values_selected = new bool[reg_quantity];
         cell_formats = new CellFormat[reg_quantity];
-        reg_alias = new char*[reg_quantity];
+        reg_alias = new char *[reg_quantity];
         reg_alias_selected = new bool[reg_quantity];
-        for(int i = 0; i < reg_quantity; ++i)
-        {
+        for (int i = 0; i < reg_quantity; ++i) {
             reg_values_selected[i] = false;
             cell_formats[i] = Format_Unsigned;
             reg_alias[i] = new char[REGISTER_ALIAS_MAX_LEN];
@@ -131,12 +126,10 @@ struct RegistersTableData
         }
     }
 
-    ~RegistersTableData()
-    {
+    ~RegistersTableData() {
         delete[] reg_values;
         delete[] cell_formats;
-        for(int i = 0; i < reg_quantity; ++i)
-        {
+        for (int i = 0; i < reg_quantity; ++i) {
             delete[] reg_alias[i];
         }
         delete[] reg_alias;
@@ -145,16 +138,14 @@ struct RegistersTableData
     }
 };
 
-struct CommunicationTrafficWindowData
-{
+struct CommunicationTrafficWindowData {
     bool stopped{false};
     std::string communication_traffic_text;
     bool stop_on_error{false};
     bool timestamp{false};
 };
 
-struct RegistersDefineData
-{
+struct RegistersDefineData {
     int id{0};
     ComboBoxData function_combo_box_data;
     int reg_addr{0};
@@ -165,13 +156,12 @@ struct RegistersDefineData
     size_t packet_size;
 };
 
-struct ModbusPacket{
+struct ModbusPacket {
     char packet[512];
     size_t packet_size;
 };
 
-struct Function_05_06_Data
-{
+struct Function_05_06_Data {
     int slave_id{0};
     int address{0};
     int value{0};
@@ -181,8 +171,7 @@ struct Function_05_06_Data
     char hex_str[512]{0};
 };
 
-union Value_Data
-{
+union Value_Data {
     bool bool_value;
     int32_t s32_value;
     int64_t s64_value;
@@ -190,32 +179,54 @@ union Value_Data
     double f64_value;
 };
 
-
-struct Function_15_16_Data
-{
+struct Function_15_16_Data {
     int slave_id{0};
     int address{0};
     int quantity{0};
-    Value_Data values[MODBUS_FRAME_MAX_REGISTERS]{ 0 };
-    char value_name[MODBUS_FRAME_MAX_REGISTERS][8]{ 0 };
+    Value_Data values[MODBUS_FRAME_MAX_REGISTERS]{0};
+    char value_name[MODBUS_FRAME_MAX_REGISTERS][8]{0};
     CellFormat format{Format_Unsigned};
     ComboBoxData format_combo_box_data{};
 };
 
-class ModbusWindow
-{
+struct PlotRegisterData {
+    char title[128]{0};
+    bool visible{true};
+    int reg_addr{0};
+    CellFormat format{Format_Unsigned};
+    ComboBoxData format_combo_box_data{};
+    std::vector<double> x_data;
+    std::vector<double> y_data;
+    double min_value{0};
+    double max_value{0};
+    void clearState() {
+        memset(title, 0, sizeof(title));
+        visible = true;
+        reg_addr = 0;
+        format = Format_Unsigned;
+        format_combo_box_data = ComboBoxData{};
+        x_data.clear();
+        y_data.clear();
+        min_value = 0;
+        max_value = 0;
+    }
+};
+
+class ModbusWindow {
     friend uint32_t Scan_timer_callback(uint32_t interval, void *param);
     friend uint32_t Send_timer_callback(uint32_t interval, void *param);
     friend uint32_t Recv_timer_callback(uint32_t interval, void *param);
-public:
-    ModbusWindow(MyIODevice *myIODevice, const char *window_name, ModbusIdentifier identifier, Protocols protocol, ModbusBase *modbus_base);
+
+  public:
+    ModbusWindow(MyIODevice *myIODevice, const char *window_name, ModbusIdentifier identifier, Protocols protocol,
+                 ModbusBase *modbus_base);
 
     ~ModbusWindow();
     void render();
 
-    bool visible(){ return m_visible; }
+    bool visible() { return m_visible; }
 
-private:
+  private:
     void render_menu_bar();
 
     void render_master_menu();
@@ -242,7 +253,11 @@ private:
 
     void render_modbus_function_16_dialog();
 
-    void get_value_by_format(CellFormat format, uint16_t *value_ptr, char *value_str, int max_len);
+    void render_input_plot_reg_data_dialog();
+
+    void render_register_plots();
+
+    void get_value_by_format(CellFormat format, const uint16_t *value_ptr, char *value_str, int max_len);
 
     void set_value_by_format(CellFormat format, uint16_t *value_ptr, const char *value_str);
 
@@ -256,16 +271,18 @@ private:
 
     void error_handle(const char *error_msg);
 
-    void write_master_register_value(CellFormat format, const char *value_str, RegistersTableData *reg_table_data, int reg_index);
+    void write_master_register_value(CellFormat format, const char *value_str, RegistersTableData *reg_table_data,
+                                     int reg_index);
 
     void process_master_frame(const ModbusFrameInfo &frame_info);
 
-    void process_slave_frame(const ModbusFrameInfo &frame_info, RegistersTableData *slave_reg_table_data, ModbusErrorCode &error_code);
+    void process_slave_frame(const ModbusFrameInfo &frame_info, RegistersTableData *slave_reg_table_data,
+                             ModbusErrorCode &error_code);
 
-    RegistersTableData *getSlaveReadTableData(int id, int function, int reg_start, int reg_end, ModbusErrorCode &error_code);
+    RegistersTableData *getSlaveReadTableData(int id, int function, int reg_start, int reg_end,
+                                              ModbusErrorCode &error_code);
 
-private:
-
+  private:
     MyIODevice *m_myIODevice;
     char m_window_name[128];
     bool m_visible;
@@ -281,11 +298,13 @@ private:
     bool m_modbus_function_06_dialog_visible;
     bool m_modbus_function_15_dialog_visible;
     bool m_modbus_function_16_dialog_visible;
+    bool m_inplut_plot_reg_data_dialog_visible;
 
-    std::vector<RegistersTableData*> m_registers_table_datas;
-    std::list<ModbusPacket*> m_cycle_list;
-    std::list<ModbusPacket*> m_manual_list;
-    std::list<RegistersTableData*> m_cycle_table_list;
+    std::vector<RegistersTableData *> m_registers_table_datas;
+    std::list<ModbusPacket *> m_cycle_list;
+    std::list<ModbusPacket *> m_manual_list;
+    std::list<RegistersTableData *> m_cycle_table_list;
+    std::list<PlotRegisterData> m_plot_register_datas;
 
     ModbusPacket *m_master_last_send_data;
     ModbusFrameInfo m_master_last_send_frame;
@@ -295,7 +314,7 @@ private:
     SDL_TimerID m_send_timer_id;
     SDL_TimerID m_recv_timer_id;
 
-    std::unordered_map<RegistersTableData*, uint32_t> m_last_scan_timestamp_map;
+    std::unordered_map<RegistersTableData *, uint32_t> m_last_scan_timestamp_map;
     std::unordered_map<const char *, ModbusFunctions> modbus_function_map;
     std::unordered_map<const char *, ModbusFunctions> modbus_slave_function_map;
     std::unordered_map<ModbusErrorCode, const char *> modbus_error_code_map;
@@ -318,6 +337,7 @@ private:
     Function_05_06_Data m_function_06_data;
     Function_15_16_Data m_function_15_data;
     Function_15_16_Data m_function_16_data;
+    PlotRegisterData m_input_plot_reg_data;
     ModbusFrameInfo m_write_frame_info;
 };
 
